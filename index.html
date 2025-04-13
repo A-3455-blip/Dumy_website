@@ -9,7 +9,7 @@
     <!-- font awesome-->
     <link rel="stylesheet" href="./css/all.css">
 </head>
-<body>
+ <body onload="myFunction()"> 
     <header>
     <!-- navigation bar-->
     <nav id="nav">
@@ -42,6 +42,13 @@
         </div>
     </nav>
 </header>
+     <script>
+          function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude;
+}
+     </script>
+    
     <!-- Main Site Section-->
     <main>
         <section class="site-title">
