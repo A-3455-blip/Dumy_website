@@ -42,12 +42,37 @@
         </div>
     </nav>
 </header>
-     <script>
-          function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude +
-  "<br>Longitude: " + position.coords.longitude;
-}
-     </script>
+     <h2>User Information</h2>
+  <p id="location">Location: Detecting...</p>
+  <p id="os">Operating System: Detecting...</p>
+
+  <script>
+    // Detect Geolocation
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        document.getElementById("location").textContent = `Location: Latitude ${lat}, Longitude ${lon}`;
+      }, function(error) {
+        document.getElementById("location").textContent = "Location: Permission denied or unavailable.";
+      });
+    } else {
+      document.getElementById("location").textContent = "Geolocation not supported by your browser.";
+    }
+
+    // Detect Operating System
+    const userAgent = navigator.userAgent;
+    let os = "Unknown";
+
+    if (userAgent.indexOf("Win") !== -1) os = "Windows";
+    else if (userAgent.indexOf("Mac") !== -1) os = "macOS";
+    else if (userAgent.indexOf("Linux") !== -1) os = "Linux";
+    else if (userAgent.indexOf("Android") !== -1) os = "Android";
+    else if (userAgent.indexOf("like Mac") !== -1) os = "iOS";
+
+    document.getElementById("os").textContent = `Operating System: ${os}`;
+  </script>
+
     
     <!-- Main Site Section-->
     <main>
